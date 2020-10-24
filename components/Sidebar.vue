@@ -41,6 +41,8 @@
     <p>#MyId</p>
   </div>
 
+ 
+
   <div class="sidebar__profileIcons">
   <i class="material-icons md-18">mic</i>
   <i class="material-icons md-18">headset</i>
@@ -49,6 +51,18 @@
   </div>
   </div>
 </template>
+
+<script>
+import { mapMutations } from 'vuex'
+
+export default {
+     computed: {
+      todos() {
+        return this.$store.state.messages.list
+      }
+    },
+}
+</script>
 
 <style scoped>
 .sidebar {
