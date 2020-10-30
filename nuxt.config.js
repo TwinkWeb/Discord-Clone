@@ -30,6 +30,8 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    '@/plugins/firebase',
+    '@/plugins/fireauth'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -41,30 +43,7 @@ export default {
   */
   modules: [
     'nuxt-material-design-icons',
-     [
-      '@nuxtjs/firebase',
-      {
-        config: {
-          apiKey: "AIzaSyAJztOY8RPW0oimSg1SKBb2IGWuwcJKoas",
-          authDomain: "discord-clone-58ac9.firebaseapp.com",
-          databaseURL: "https://discord-clone-58ac9.firebaseio.com",
-          projectId: "discord-clone-58ac9",
-          storageBucket: "discord-clone-58ac9.appspot.com",
-          messagingSenderId: "555231349723",
-          appId: "1:555231349723:web:2c8bcd34dc19d490fe75fe",
-          measurementId: "G-X3LDND9LY5"
-        },
-        services: {
-          auth: {
-            persistence: 'local', 
-            initialize: {
-              onAuthStateChangedMutation: 'ON_AUTH_STATE_CHANGED_MUTATION',
-              onAuthStateChangedAction: 'onAuthStateChangedAction'
-            },
-          } // Just as example. Can be any other service.
-        }
-      }
-    ]
+ 
   ],
   components: true,
   /*

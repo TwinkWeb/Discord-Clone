@@ -12,3 +12,4 @@ const config = {
   };
 
   !firebase.apps.length ? firebase.initializeApp(config) : ''
+

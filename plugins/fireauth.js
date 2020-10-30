@@ -8,6 +8,7 @@ export default context => {
     auth.onAuthStateChanged(user => {
         console.log(user)
       if (user) {
+        return resolve(store.commit('auth/ON_AUTH_STATE_CHANGED_MUTATION', user))
       }
       return resolve()
     })
