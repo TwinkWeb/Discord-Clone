@@ -4,24 +4,23 @@
     <img  src="https://steamuserimages-a.akamaihd.net/ugc/943935949948261216/6BB60699D9C0DB8F559BAE20FB0BA3A848844D5D/?imw=512&amp;imh=288&amp;ima=fit&amp;impolicy=Letterbox&amp;imcolor=%23000000&amp;letterbox=true" alt="">
     </div>
 
-    <button @click="signIn" class="login__btn">Sign in</button>
+    <button @click.prevent="signIn" class="login__btn">Sign in</button>
 </div>
     
 </template>
 
 <script>
-import * as firebase from 'firebase'
-const auth = firebase.auth();
-const GoogleProvider = new firebase.auth.GoogleAuthProvider()
+// import * as firebase from 'firebase'
+// const auth = firebase.auth();
+// const GoogleProvider = new firebase.auth.GoogleAuthProvider()
 
 export default {
 methods: {
-      signIn() {
-          auth.signInWithPopup(GoogleProvider).catch(error => alert(error.message))
-      }  
+     async signIn() {
+         await this.$store.dispatch('login')
+          this.$router.push('/')
+      },
 },
- 
-    
 }
 </script>
 

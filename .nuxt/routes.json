@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Login",
+    "path": "/Login",
+    "component": "C:\\\\vue-projects\\\\Discord\\\\pages\\\\Login.vue",
+    "chunkName": "pages/Login",
+    "_name": "_0363647b"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "C:\\\\vue-projects\\\\Discord\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_7b6cbcf8"
+  }
+]

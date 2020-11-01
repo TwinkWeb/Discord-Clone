@@ -35,10 +35,11 @@
   </div>
 
   <div class="sidebar__profile">
-  <i class="material-icons md-18">account_circle</i>
+  <i @click.prevent="logOut" class="material-icons md-18">account_circle</i>
   <div class="sidebar__profileInfo">
-    <h3>Dmitri </h3>
-    <p>#MyId</p>
+    <h3>{{ userProfile.name }}</h3>
+    <p>#{{ userProfile.id.substring(0, 5) }}</p>
+    <p></p>
   </div>
 
  
@@ -53,14 +54,20 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
-     computed: {
-      todos() {
-        return this.$store.state.messages.list
-      }
-    },
+computed: {
+  ...mapGetters({
+        userProfile: 'userProfile'
+      })
+},
+ methods: {
+  logOut() {
+  this.$store.dispatch('logout')
+  this.$router.push('/Login')
+},
+ }
 }
 </script>
 

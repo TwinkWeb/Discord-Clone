@@ -1,0 +1,32 @@
+{
+  "Chat": {
+    "description": "Auto imported from components/Chat.vue"
+  },
+  "LazyChat": {
+    "description": "Auto imported from components/Chat.vue"
+  },
+  "ChatHeader": {
+    "description": "Auto imported from components/ChatHeader.vue"
+  },
+  "LazyChatHeader": {
+    "description": "Auto imported from components/ChatHeader.vue"
+  },
+  "Message": {
+    "description": "Auto imported from components/Message.vue"
+  },
+  "LazyMessage": {
+    "description": "Auto imported from components/Message.vue"
+  },
+  "Sidebar": {
+    "description": "Auto imported from components/Sidebar.vue"
+  },
+  "LazySidebar": {
+    "description": "Auto imported from components/Sidebar.vue"
+  },
+  "SidebarChannel": {
+    "description": "Auto imported from components/SidebarChannel.vue"
+  },
+  "LazySidebarChannel": {
+    "description": "Auto imported from components/SidebarChannel.vue"
+  }
+}
