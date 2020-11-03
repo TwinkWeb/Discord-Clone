@@ -5,8 +5,8 @@
                 <span class="chatHeader__hash">
                     #
                 </span>
-                Test Channel name
-            </h3>
+                {{ $store.state.channelName}}
+             </h3>
         </div>
 
         <div class="chatHeader__right">

@@ -11,26 +11,26 @@
          <i class="material-icons md-18">expand_more</i>
          <h4>Text channels</h4>
        </div>
-        <i class="material-icons md-18 sidebar__addChannel">add</i>
+        <i @click='addChannel' class="material-icons md-18 sidebar__addChannel">add</i>
     </div>
      <div class="sidebar__channelList">
-  <SidebarChannel />
-  <SidebarChannel />
-  <SidebarChannel />
-  <SidebarChannel />
+     <SidebarChannel  v-for="(channel,index) in channels" 
+     :channelName="channel.id" 
+     :key="index" />
   </div>
   </div>
 
   <div class="sidebar__voice">
         <i class="material-icons md-18 sidebar__voiceIcon">signal_cellular_4_bar</i>
-        <div class="sidebar__voiceInfo">
+        <div  class="sidebar__voiceInfo">
           <h3>Voice Connected</h3>
           <p>Stream</p>
         </div>
 
+
         <div class="sidebar__voiceIcons">
          <i class="material-icons md-18">info</i>
-         <i class="material-icons md-18">call</i>
+         <i  class="material-icons md-18">call</i>
         </div>
   </div>
 
@@ -39,7 +39,6 @@
   <div class="sidebar__profileInfo">
     <h3>{{ userProfile.name }}</h3>
     <p>#{{ userProfile.id.substring(0, 5) }}</p>
-    <p></p>
   </div>
 
  
@@ -54,23 +53,55 @@
 </template>
 
 <script>
+ import {fireDb} from '~/plugins/firebase.js'
 import { mapGetters } from 'vuex'
 
 export default {
+  data() {
+    return {
+      writeSuccessful: false,
+        readSuccessful: false,
+        text: "",
+        channels: []
+    }
+  },
+  async mounted() {
+   const ref = fireDb.collection("test").onSnapshot((snapshot) => {
+    this.channels = snapshot.docs
+    })
+  },
 computed: {
-  ...mapGetters({
-        userProfile: 'userProfile'
+ ...mapGetters({
+        userProfile: 'userProfile',
       })
 },
+ 
  methods: {
   logOut() {
   this.$store.dispatch('logout')
+  this.$store.commit('setChannelName')
   this.$router.push('/Login')
 },
+     async addChannel() {
+        const channelName = prompt("Enter a new channel name")
+        const ref = fireDb.collection("test").doc(channelName)
+
+        const document = {
+          channelName: channelName
+        }
+        try {
+          if(channelName) {
+          await ref.set(document)
+          }
+        } catch (e) {
+          // TODO: error handling
+          console.error(e)
+        }
+        this.writeSuccessful = true
+      }
  }
 }
 </script>
-
 <style scoped>
 .sidebar {
   display: flex;
@@ -130,6 +161,7 @@ computed: {
   flex: 1;
   padding: 10px;
 }
+
 
 .sidebar__voiceIcon {
   color: #4fb185;

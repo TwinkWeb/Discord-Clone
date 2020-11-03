@@ -1,5 +1,6 @@
 import * as firebase from 'firebase'
 
+
 const config = {
     apiKey: "AIzaSyAJztOY8RPW0oimSg1SKBb2IGWuwcJKoas",
     authDomain: "discord-clone-58ac9.firebaseapp.com",
@@ -12,4 +13,7 @@ const config = {
   };
 
   !firebase.apps.length ? firebase.initializeApp(config) : ''
+  
+  const fireDb = firebase.firestore()
 
+  export {fireDb}

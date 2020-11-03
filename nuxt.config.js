@@ -30,7 +30,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    
+    '@/plugins/firebase'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -62,6 +62,11 @@ export default {
               onAuthStateChangedMutation: 'ON_AUTH_STATE_CHANGED_MUTATION',
             },
             ssr: false 
+          },
+          firestore: {
+            memoryOnly: false, // default
+            chunkName: process.env.NODE_ENV !== 'production' ? 'firebase-auth' : '[id]', // default
+            enablePersistence: true,
           }
         }
       }

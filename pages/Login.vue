@@ -10,9 +10,7 @@
 </template>
 
 <script>
-// import * as firebase from 'firebase'
-// const auth = firebase.auth();
-// const GoogleProvider = new firebase.auth.GoogleAuthProvider()
+
 
 export default {
 methods: {

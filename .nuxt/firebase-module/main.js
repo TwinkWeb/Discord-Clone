@@ -33,4 +33,28 @@ export default async ({ res }, inject) => {
       }
     }
   }
+
+  /** --------------------------------------------------------------------------------------------- **/
+  /** ------------------------------------- FIREBASE FIRESTORE ------------------------------------ **/
+  /** --------------------------------------------------------------------------------------------- **/
+
+  await import(/* webpackChunkName: 'firebase-auth' */'firebase/firestore')
+
+  const fireStore = session.firestore()
+  const fireStoreObj = firebase.firestore
+  inject('fireStore', fireStore)
+  inject('fireStoreObj', fireStoreObj)
+
+  // persistence should only be enabled client side
+  if (process.client) {
+    try {
+      await fireStore.enablePersistence({})
+    } catch (err) {
+      if (err.code == 'failed-precondition') {
+        console.warn('[@nuxtjs/firebase]: Firestore Persistence not enabled. Multiple tabs open, persistence can only be enabled in one tab at a a time.')
+      } else if (err.code == 'unimplemented') {
+        console.info('[@nuxtjs/firebase]: Firestore Persistence not enabled. The current browser does not support all of the features required to enable persistence.')
+      }
+    }
+  }
 }

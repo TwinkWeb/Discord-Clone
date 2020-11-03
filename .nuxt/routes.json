@@ -3,14 +3,12 @@
     "name": "Login",
     "path": "/Login",
     "component": "C:\\\\vue-projects\\\\Discord\\\\pages\\\\Login.vue",
-    "chunkName": "pages/Login",
-    "_name": "_0363647b"
+    "chunkName": "pages/Login"
   },
   {
     "name": "index",
     "path": "/",
     "component": "C:\\\\vue-projects\\\\Discord\\\\pages\\\\index.vue",
-    "chunkName": "pages/index",
-    "_name": "_7b6cbcf8"
+    "chunkName": "pages/index"
   }
 ]

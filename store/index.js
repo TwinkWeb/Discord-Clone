@@ -1,30 +1,49 @@
 import * as firebase from 'firebase'
+import {fireDb} from '~/plugins/firebase.js'
+
 
 
 export const state = () => ({
   userProfile: {},
-  token: null
+  token: null,
+  channelName: '',
+  messages: []
 })
 
 
 export const getters = {
   userProfile: ({userProfile}) => userProfile,
-  hasToken: s => !!s.token
+  hasToken: s => !!s.token,
+  channelName: s => s.channelName,
+  messages: s => s.messages
 };
 
 export const mutations = {
+  setChannelName(state, payload) {
+   state.channelName = payload
+  },
+
+  GET_MESSAGES(state, payload) {
+    fireDb.collection("test")
+   .doc(payload)
+   .collection('messages')
+   .orderBy("timestamp")
+   .onSnapshot((snapshot) => {
+    state.messages = snapshot.docs.map((doc) => doc.data())
+    console.log(state.userProfile)
+    })
+  },
+
   ON_AUTH_STATE_CHANGED_MUTATION(state, { authUser, claims }) {
     if (!authUser) {
       state.userProfile = {}
       state.token = null
-      console.log(state.token)
     } else {
       state.userProfile = {
       name: authUser.displayName,
-      id: authUser.uid
+      id: authUser.uid,
     }
      state.token = 'true'
-     console.log(state.token)
     };
   },
 
@@ -39,6 +58,8 @@ export const actions = {
       console.log(error);
     }
   },
+
+  
 
   async logout() {
     try {
